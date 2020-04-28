@@ -9,7 +9,6 @@ lang: en
 Programming fundamentals for Python. HTTP 1
 ===========================================
 
-https://slides.com/pepegar/http-1/live
 
 Plan for today
 ==============

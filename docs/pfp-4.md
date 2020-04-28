@@ -9,7 +9,6 @@ lang: en
 Programming fundamentals with Python
 ====================================
 
-https://slides.com/pepegar/pfp-4/live
 
 Algorithms
 ==========

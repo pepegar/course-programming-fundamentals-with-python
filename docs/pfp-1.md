@@ -9,8 +9,6 @@ lang: en
 Programming fundamentals with Python
 ====================================
 
-https://slides.com/pepegar/pfp-1/live
-
 About the professor
 -------------------
 
@@ -19,6 +17,9 @@ About the professor
 jgarciah\@faculty.ie.edu
 
 Ask me anything
+
+Programming fundamentals with Python
+====================================
 
 About the course
 ----------------
@@ -33,6 +34,9 @@ About the course
 
 [1 final quiz]{style="font-size:2.0em"}
 
+Programming fundamentals with Python
+====================================
+
 Grading
 =======
 
@@ -43,5 +47,8 @@ Grading
   Class Participation   10 %
   Workgroups            20 %
 
+Programming fundamentals with Python
+====================================
+
 Review
-======
+------

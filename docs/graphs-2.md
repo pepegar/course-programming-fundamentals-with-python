@@ -9,7 +9,6 @@ lang: en
 Programming fundamentals. Graphs pt. 2
 ======================================
 
-https://slides.com/pepegar/graphs-2/live
 
 Plan for today
 ==============
