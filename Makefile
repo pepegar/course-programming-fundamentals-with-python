@@ -1,4 +1,4 @@
-source := docs
+source := slides-md
 output := slides
 sources := $(wildcard $(source)/*.md)
 objects := $(patsubst %.md,%.pdf,$(subst $(source),$(output),$(sources)))
