@@ -1,162 +1,261 @@
 ---
 title: Programming fundamentals with Python
-author: Pepe García
+subtitle: Session 3
+author: Pepe García <jgarciah@faculty.ie.edu>
 email: jgarciah@faculty.ie.edu
 date: 2020-04-20
 lang: en
 ---
 
-Programming fundamentals with Python
-====================================
+# Github
 
+At this point, everybody should have an account on Github.  If you
+haven't yet created one, please go ahead and create one (you can
+follow the instructions in the second link of the bibliography).
 
-Plan for today
-==============
+# Github
 
-Learn about dictionaries
+Let's **create a repository on Github**!
 
-Do some exercises with dictionaries
+. . .
 
-Talk about algorithms
+>- Log into your github.com account
+>- Create a new repository
 
-Dictionaries
-============
+# Github - create a new repository
 
-Dictionaries are data structures that map keys to values
+![](./img/repo.png){height=280}
 
-Dictionaries: Syntax
-====================
+# Github - linking our local repo with Github
+
+Now that we have created this repo, it's identified with a unique URL,
+we'll use the **https** url to link our local and remote repositories.
+
+![](./img/https-url.png)
+
+# Github - linking our local repo with Github
+
+In order to link our local repo with Github, we will need to **set a
+new remote** in our local repository:
+
+``` {.diff}
+$ git remote add origin https://github.com/popogor/my-first-repo.git
+```
+
+This will tell **git** where is the **remote repository** to which we
+will upload our changes.
+
+# Github - pushing code!
+
+Now that we have everything set, we're ready to **push** our code to
+Github!
+
+``` {.diff}
+$ git push origin master
+
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 608 bytes | 608.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/popogor/my-first-repo.git
+ * [new branch]      master -> master
+```
+
+**git push** sends changes from the local repository to the remote one. 
+It's the way we have to *upload* code to github.
+
+# Git
+
+## Interlude - branches
+
+As you've seen, the latest parameter that we passed to push is
+**`master`**.  That's the name of the default **branch** in git.
+
+Branches are a way of being able to work in parallel features on the
+same repository.  We're not going to use them in this course, but if
+you're interested, there's a link in the bibliography.
+
+# Github - pulling
+
+The reverse of **pushing** is **pulling**, and that will allow us to
+bring all changes **from the remote repository to our local repository.**
+
+``` {.diff}
+$ git pull origin master
+```
+
+Solving conflicts
+=================
+
+*Conflicts* occur naturally when coding.  Mostly when we do collaborate
+with others.
+
+ 
+
+Let's introduce a conflict and fix it ourselves!
+
+Solving conflicts
+=================
+
+First, in our local copy of **my-first-repo**, let's change the
+function we had to:
 
 ```python
-my_dictionary = {
-  "key": "value"
-}
+def func(a, b):
+    return a - b
 ```
 
-Dictionaries: Syntax
-====================
+A simple change, just modify it so it substracts instead of adding.
 
-```python
-empty_dictionary = {}
+Solving conflicts
+=================
+
+And then **git add** and **git commit** it.
+
+```bash
+$ git add file.py
+
+$ git commit -m "change function and make it substract"
+
+[master ae46fc3] change function and make it substract
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 ```
 
-One can create an empty dictionary by using opening and closing curly
-brackets
+Solving conflicts
+=================
 
-Dictionaries: Syntax
-====================
+Now let's simulate the changes someone else would make in github.
 
-```python
-members = {
-  "The Ramones": 4,
-  "The Beatles": 4,
-  "Straycats": 3
-}
+Solving conflicts
+=================
+
+Then, in our local repository, let's **git pull**
+
+``` {.asciidoc}
+$ git pull origin master
+
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From https://github.com/popogor/my-first-repo
+ * branch            master     -> FETCH_HEAD
+   4c659b6..e441a78  master     -> origin/master
+Auto-merging file.py
+CONFLICT (content): Merge conflict in file.py
+Automatic merge failed; fix conflicts and then commit the result.
 ```
 
-Or you can create a dictionary and add key-value pairs to it directly:
+Solving conflicts
+=================
 
-Dictionaries: Syntax
-====================
+First of all, we need to see the conflicts
 
-Adding  new elements to a dictionary
-====================================
+``` {.diff}
+$ git diff
 
-As with lists, you can use the following syntax:
+diff --cc file.py
+index 64ad20f,84e4d51..0000000
+--- a/file.py
++++ b/file.py
+@@@ -1,3 -1,3 +1,7 @@@
 
-```python
-in_english = {}
-
-in_english[33] = "thirty three"
-in_english[5] = "five"
+  def func(a, b):
+++<<<<<<< HEAD
+ +    return a - b
+++=======
++     return a * b
+++>>>>>>> e441a78ff5f91b986f0da3afddbb7a7a01ee1859
 ```
 
-Adding  new elements to a dictionary
-====================================
+Solving conflicts
+=================
 
-Deleting elements from a dictionary
-===================================
+As you've seen in the last **git diff**, there are incompatible
+changes in our function.  We need to make a decission, let's say that
+we want to keep the multiplication.
 
-As with lists, you can use the pop method!
-
-```python
-in_english = {}
-
-in_english[33] = "thorty three"
-in_english.pop(33)
-in_english[33] = "thirty three"
-```
-
-Deleting elements from a dictionary
-===================================
-
-Looping dictionaries
-====================
-
-As with lists, the easiest way of looping over all elements in a
-dictionary is a for loop:
-
-```python
-ingredients = {
-  "potatoes": 3,
-  "celery": 1,
-  "onion": 1
-}
-
-for key in ingredients:
-    print("I have " + ingredients[key] + " " + key)
-```
-
-Looping dictionaries
-====================
-
-Miscelanea
-==========
-
-There are lots of useful things that we can do with dictionaries:
-
-```python
-dictionary.keys() # returns all keys as a list
-dictionary.values() # returns all values as a list
-len(dictionary) # returns the number of elements in a dictionary
-key in dictionary # returns true if the dictionary contains the key
-key not in dictionary # returns true if the dictionary does not
-                      # contain the key
-# and much more :)
-```
-
-Miscelanea
-==========
-
-Exercises
-=========
-
-1. Create a function that receives a text and returns the frequency of
-   each word in the text (as a dictionary).
-
-Exercises
-=========
-
-2. Create a function that uses the previously generated dictionary and
-   prints a bars diagram of the frequencies.  For example, the
-   following:
+We finish the process by doing **git add** and **git commit** after
+solving the conflict, telling git we're happy with the result.
 
 ```
-   dictionary = {"a": 4, "hello": 1, "world": 3, "another": 2}
-   diagram(dictionary)
+$ git add file.py
+
+$ git commit -m "merged conflict in file.py"
+[master 1abfd41] merged conflict in file.py
 ```
 
-   should print:
+Solving conflicts
+=================
 
+``` {.diff}
+$ git log
+
+commit 1abfd4151a6d44e3268c59b56065730676e545db (HEAD -> master)
+Merge: ae46fc3 e441a78
+Author: Pepe García <pepe@pepegar.com>
+Date:   Tue Nov 12 01:55:00 2019 +0100
+
+    merged conflict in file.py
+
+commit e441a78ff5f91b986f0da3afddbb7a7a01ee1859 (origin/master)
+Author: popogor <46658846+popogor@users.noreply.github.com>
+Date:   Tue Nov 12 01:38:13 2019 +0100
+
+    change function and make it multiply
+
+commit ae46fc37dbbf344f3ee4e5d189bb0714a543dd0f
+Author: Pepe García <pepe@pepegar.com>
+Date:   Tue Nov 12 01:37:38 2019 +0100
+
+    change function and make it substract
+
+commit 4c659b6305efe08b961422e1c5aa339fab4f9725
+Author: Pepe García <pepe@pepegar.com>
+Date:   Tue Nov 12 01:35:07 2019 +0100
+
+    create function fun
+
+commit 123cd8b45ae31065cdd7cf0ecd8ce83b444886db
+Author: Pepe García <pepe@pepegar.com>
+Date:   Mon Nov 11 23:55:49 2019 +0100
+
+    add file.py to git
 ```
-   a       | ****
-   hello   | *
-   world   | ***
-   another | **
+
+
+# Github classroom
+
+**Github classroom** is the software we will use in this term to
+handle, submit, and review assignments.  You will receive links like
+this one, and you'll need to accept the assignments:
+
+[https://classroom.github.com/a/csu9qbqV](https://classroom.github.com/a/csu9qbqV)
+
+Cloning a project
+=================
+
+``` {.diff}
+$ git clone https://github.com/pepegar/my-first-repository.git
+
+Cloning into 'my-first-repository'...
+remote: Enumerating objects: 16, done.
+remote: Total 16 (delta 0), reused 0 (delta 0), pack-reused 16
+Unpacking objects: 100% (16/16), done.
 ```
 
-Exercises
-=========
+we use **git clone** to copy a repository to our local computer.
 
-3. re-implement the phonebook example using a dictionary instead of
-   two lists.
+# Bibliography
+
+Images and inspiration drawn from
+
+- **[How to teach Git](https://rachelcarmena.github.io/2018/12/12/how-to-teach-git.html)**
+- **[Codecademy - get started with Git and Github](https://www.codecademy.com/paths/computer-science/tracks/cspath-development-skills/modules/learn-git-git-workflow-u/articles/getting-started-git-and-github)**
+- **[Learn git concepts, not commands](https://dev.to/unseenwizzard/learn-git-concepts-not-commands-4gjc)**
+- **[Using branches](https://www.atlassian.com/git/tutorials/using-branches)**
+- **[Switch git branch](https://devconnected.com/how-to-switch-branch-on-git/)**
+
+My old set of slides:
+
+- **[https://slides.com/pepegar/pfp-9](https://slides.com/pepegar/pfp-9)**
