@@ -8,10 +8,22 @@ lang: en
 ---
 
 Plan for today
-==============
 
 >- Files refresher
+>- CSV refresher
 >- Learn about JSON
+
+# data for today
+
+## Session 6 repository
+
+All materials for today's session will be in
+[**`https://github.com/pfp-2020/session-6`**](https://github.com/pfp-2020/session-6).  Clone it if you want to
+have it in your computer.
+
+# Plan for today
+
+- Files refresher
 
 # the **open** function
 
@@ -80,6 +92,10 @@ with open('/Users/pepe/Desktop/goodbye.txt', 'w') as file:
     file.write("goodbye y'all!")
 ```
 
+# Plan for today
+
+- Files refresher
+- CSV refresher
 
 # CSV
 
@@ -152,6 +168,19 @@ with open("file.csv", "a") as f:
         writer.writerow(line)
 ```
 
+# CSV Files - exercise
+
+##
+
+Let's remember how to use CSV files.  There is a CSV in
+**`data/data.csv`**.  Let's create a Python function that returns all
+the emails from the users in the file.
+
+# Plan for today
+
+- Files refresher
+- CSV refresher
+- Learn about JSON
 
 # JSON
 
@@ -159,9 +188,12 @@ with open("file.csv", "a") as f:
 
 :::: column
 
-JSON (http://json.org) is a data interchange format, like CSV
+JSON (http://json.org) is a data interchange format, like CSV.  The
+name JSON stands for **Javascript Object Notation**, because the way
+of writing it is very similar to Javascript.
 
-The main difference is that with JSON we can represent arbitrary data, not only tabular data.
+The main difference is that **JSON can represent arbitrary data, not
+only tabular data**.
 
 ::::
 
@@ -195,7 +227,7 @@ The main difference is that with JSON we can represent arbitrary data, not only 
 
 # JSON
 
-Some valid JSON values are:
+JSON can contain
 
 ::: columns
 
@@ -206,6 +238,8 @@ Some valid JSON values are:
 1
 true
 "potatoes"
+4.77
+null
 {"name":"Pepe","surname":"Garcia"}
 ```
 
@@ -219,7 +253,10 @@ true
 >- integers
 >- booleans
 >- strings
+>- floats
+>- null (an empty value)
 >- dictionaries
+
 ::::
 
 :::
@@ -227,11 +264,85 @@ true
 # JSON
 
 JSON is very similar to how we declare our data in Python but the cool
-thing about it is that it can be used **from any language**.
+thing about it is that it can be used **from any language**.  In
+Python we will be able to use JSON using the **`json`** module
 
+
+```python
+import json
+```
+
+# JSON - reading JSON data in Python
+
+As with other formats we've seen so far, in order to operate with json
+files we will first **open()** the file.
+
+. . .
+
+::: {.columns}
+
+:::: {.column}
+
+```python
+import json
+
+with open("data.json") as file:
+    json_data = json.load(file)
+
+    for key in json_data:
+        print(key)
+```
+::::
+
+:::: {.column}
+
+**`json.load`** is a function from the json module that
+takes a **file object** as parameter and returns the contents of that
+file **parsed as JSON**.
+
+::::
+
+:::
+
+# JSON - writing JSON files
+
+The process of writing JSON files is similar to what we know already.
+
+::: {.columns}
+
+:::: {.column width=55%}
+
+```python
+import json
+
+data = {
+  "name": "Pepe",
+  "last_name": "Garcia"
+}
+
+with open("data.json", "w") as file:
+    json.dump(data, file)
+```
+
+::::
+
+:::: {.column width=45%}
+
+As you can see, we're calling **`json.dump`** from the **`json`**
+library, and passing first the data we want to write to the file and
+then the file object as parameters.
+
+::::
+
+:::
 
 # Homework
 
 You will find the data files for these exercises in this repository:  https://github.com/pfp-2020/session-6
 
->-
+- Let's get personal data from the person represented in
+  **`luke.json`**.  Print the **`name`**, **`height`**,
+  **`eye_color`**, and **`mass`**.
+- Let's create a **format conversor**. Our function
+  **`convert_format`** will read all the data from **`data/data.csv`** and
+  write it to a new **JSON** file named **`converted.json`**
