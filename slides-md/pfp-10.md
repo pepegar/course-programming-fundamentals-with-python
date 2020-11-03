@@ -1,191 +1,114 @@
 ---
 title: Programming fundamentals with Python
-author: Pepe García
+subtitle: Session 10 - Search algorithms
+author: Pepe García <jgarciah@faculty.ie.edu>
 email: jgarciah@faculty.ie.edu
 date: 2020-04-20
 lang: en
 ---
 
-Programming fundamentals with Python
-====================================
+# Asymptotic notation refresher
 
+>- Big Theta (Θ) - Only one case in term of runtime (worst case == best case)
+>- Big Omega (Ω) - For describing **best case** runtime
+>- Big O (O) - For describing **worst case** runtime. **This is the one we'll use most of the time**.
 
-Plan for today
-==============
+# Different runtimes
 
-Learn what are modules and why they exist
+![](./img/runtimes.png)
 
-Learn about standard library modules
+# Search algorithms
 
-Learn about third party modules
+Search algorithms are used to check the existence of an element in a sequence.
+There are different things that may affect how to search in that sequence.
 
-Create our own modules
+# Search algorithms
 
-Modules
-=======
+Our search algorithms will be implemented as functions in Python that receive
+**two parameters, the element we're searching for, and the list**, and will **return
+a boolean** representing if the element exists in the sequence.
 
-Python modules allow us to reuse code written somewhere else
+# Types of search algorithms
 
-Modules
-=======
+We will learn about the two main search algorithms used.  **Linear search** and
+**Binary search**.
 
-We, as programmers need to be lazy, and follow the DRY principles. 
-That\'s what modules help with.
+# Linear search
 
-Modules
-=======
+We will use linear search whenever we're not sure if the list is sorted or not.
+For implementing linear search we will:
 
-To use modules, we need the import statement:
+>- Iterate over all elements in the list
+>- if we find the element, **return True**.
+>- if we don't find the element, **return False**.
 
-```python
-import module
-```
+. . .
 
-Modules
-=======
+\begin{exampleblock}{Linear search}
+Let's implement linear search ourselves!
+\end{exampleblock}
 
-When we import a module, all variables in the module are evaluated, all
-functions created, and top level statements executed.
+# Linear search - Discussion
 
-Modules
-=======
+>- What's the worst case runtime of linear search? (**Big O**)
+>- And the best case? (**Big Omega**)
+>- Can you say something good or bad about linear search?
 
-Modules
-=======
+. . .
 
-But, where does Python search for modules?
+The good thing about linear search is that it will work for any sequence,
+regardless if it's sorted.
 
-sys.path
-========
+Something bad, it may be inefficient in some cases.
 
-Standard library
-================
+# Binary search
 
-The stdlib is a set of modules for a lot of different purposes
+Binary search is the algorithm we'll apply to search for an element in a
+**sorted** sequence.  A sequence being sorted implies that elements inside it
+are greater than or equal to previous elements and lesser than or equal to
+following elements.
 
-Python follows a batteries included approach, trying to give us as
-programmers everything we need
+**`[]`** is sorted
 
-Standard library
-================
+**`[1]`** is sorted
 
-We have already used some modules from the standard library before:
+**`[1,1,1,1]`** is sorted
 
-sys
-===
+**`[1,2,3,3,3,3,4,7,9,12,31]`** is sorted
 
-sys contains functionality related with the current python session
+**`[2,1,3,3,3,3,4,7,9,12,31]`** is **not** sorted
 
-```python
-import sys
+# Binary search
 
-print(sys.path)
+Imagine we need to go through a dictionary (the actual book, not a Python
+dictionary) to search for a word.  What's the algorithm you automatically apply
+to the search?
 
-# ['', '/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/lib/python37.zip', '/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/lib/python3.7', '/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/lib/python3.7/lib-dynload', '/Users/pepe/Library/Python/3.7/lib/python/site-packages', '/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/lib/python3.7/site-packages']
-```
+. . .
 
-time
-====
+>- Open the dictionary in a page in the middle.
+>- If the word is _lesser than_ the current words, jump to the middle of the left half.
+>- If it's _greater than_ the current word, jump to the middle of the right half.
 
-time module from the standard library contains utilities related to
-**time**
+# Binary search
 
-```python
-import time
+![](./img/binary_search.png)
 
-while True:
-    time.sleep(1)
-    print("hello!")
-```
+# Binary search
 
-math
-====
+\begin{exampleblock}{Binary search}
+Let's implement binary search ourselves!
+\end{exampleblock}
 
-math module contains useful functions and constants for doing numeric
-and mathematic operations
+# Binary search - discussion
 
-```python
-import math
 
-math.ceil(3.4)
-# 4
+>- What's the worst case runtime of it? (**Big O**)
+>- And the best case? (**Big Omega**)
+>- Can you say something good or bad about it?
 
+. . .
 
-math.floor(3.4)
-# 3
-```
+The good thing about binary search is that it's more performant than linear search.
 
-third party libraries
-=====================
-
-There are a lot of third party libraries:
-
-<https://pypi.org>
-
-example: matplotlib
-===================
-
-matplotlib is a great library for plotting and visualizing data
-
-This library does not usually come installed with python, but we have it
-because we installed anaconda! 🐍
-
-matplotlib
-==========
-
-Recap
-=====
-
-Import modules with import
-
-Create our own modules as files
-
-stdlib contains a lot of useful stuff
-
-third party libs can help when something is not on stdlib
-
-Exercises
-=========
-
-Exercise 1
-==========
-
-create a more accurate version of **calculate\_volume\_cilinder** and
-**calculate\_volume\_sphere** that gets the **pi** constant from the
-**math** module
-
-Exercise 2
-==========
-
-Investigate how to create histograms using the **matplotlib** library. 
-Create a function that uses the **matplotlib** library to plot the
-histogram of the grade distribution in an imaginary IE class with 100
-students.  Remember that there are 15% pass, 35% proficiency, 35%
-excellence, and 15% honors in a class.
-
-Exercise 3
-==========
-
-Investigate about packages in Python, read this guide
-<https://docs.python.org/3/tutorial/modules.html#packages>.
-
- 
-
-Create the following packages:\
-- a **utils** package, containing a **functions** module.  The
-**functions** module should contain a function **area\_triangle** that
-calculates the area of a triangle.\
-- a **data** package, containing a **triangles** module that declares a
-variable **triangle\_definitions** with a list of 10 triangle
-definitions.  Each triangle definition should be a dictionary like:
-
-**{\"base\": 10, \"height\":2}**
-
-\- a **main.py** file that will use **utils.functions.area\_triangle**
-and **data.triangles.triangle\_definitions** to print the areas of all
-triangles.
-
- 
-
-If you want to handle this exercise to me, please create a repository in
-github named **black-belt-modules** and push your solution there.
+Something bad, it doesn't work for all sequences, they must be sorted.
