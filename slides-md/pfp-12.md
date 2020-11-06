@@ -21,7 +21,22 @@ lang: en
 ::::
 ::::column
 Recursion is a technique to solve problems in terms of smaller versions of the
-same problem
+same problem.
+
+. . .
+
+In computer science we use it when a function calls itself:
+
+. . .
+
+```python
+def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n - 1)
+```
+
 ::::
 :::
 
