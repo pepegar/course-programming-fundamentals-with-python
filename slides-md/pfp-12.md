@@ -1,117 +1,134 @@
 ---
 title: Programming fundamentals with Python
-author: Pepe García
+subtitle: Sorting algorithms - mergesort
+author: Pepe García <jgarciah@faculty.ie.edu>
 email: jgarciah@faculty.ie.edu
-date: 2020-04-20
+date: 2020-11-06
 lang: en
 ---
 
-Programming fundamentals with Python
-====================================
+# Plan for today
 
+>- recursion
+>- divide and conquer algorithms
+>- mergesort
 
-Error handling
-==============
+# Recursion
 
-Things can go wrong when programming.  Today we\'ll learn how to deal
-with errors, and how to produce them ourselves.
+::: columns
+:::: column
+![](./img/recursive-book.jpeg)
+::::
+::::column
+Recursion is a technique to solve problems in terms of smaller versions of the
+same problem
+::::
+:::
 
-Error handling
-==============
+# Recursion
 
-Can you name cases in which your program went wrong?
+::: columns
+:::: column
+![](./img/droste.jpg)
+::::
+::::column
 
-Division by zero
+An example of a recursive algorithm is the calculation of a number in the
+Fibonacci sequence.
 
-File not found
+Remember that Fibonacci goes like this:
 
-Type error
+**0, 1, 1, 2, 3, 5, 8, 13...**
 
-What are exceptions
-===================
+. . .
 
-**Exceptions**, or **errors**, are exceptional events that may happen in
-our program.  They may happen because of different reasons
+\begin{exampleblock}{Fibonacci}
 
-What are exceptions
-===================
+Let's implement the calculation of a number in the Fibonacci sequence using recursion!
 
-    def divide(a, b):
-        return a / b
+\end{exampleblock}
 
-Can you spot the potential **exception** in the following function?
+::::
+:::
 
-What are exceptions
-===================
+# Recursion
 
-By default, if we don\'t do anything, an exception terminates the
-program.
+Something that we have to consider is that all problems that we solve using
+recursion can be solved using iteration.
 
-Recovering from exceptions
-==========================
+. . .
 
-Python provides a way of handling exceptions, using the **try-except**
-block.
+\begin{block}{Homework}
 
-```python
-try:
-    do_something()
-except:
-    recover()
-```
+Try implementing the previous function using iteration instead of recursion!
 
-Recovering
-==========
+\end{block}
 
-Let\'s recover from a simple exception by printing a message
+# Divide and conquer
 
-Matching exceptions
-===================
+::: columns
+:::: {.column width=20%}
+![](./img/Philip-ii-of-macedon.jpg)
+::::
+:::: {.column width=80%}
 
-We can match particular exceptions in the except clause, this way, only
-the kind of exception we matched will be handled
+From Wikipedia:
 
-```python
-try:
-    do_something()
-except ValueError:
-    recover()
-```
+> Divide and rule (Latin: divide et impera), or divide and conquer, in politics
+> and sociology is gaining and maintaining power by breaking up larger
+> concentrations of power into pieces that individually have less power than the
+> one implementing the strategy.
 
-Recovering
-==========
+. . .
 
-Let\'s modify the previous example
+_Divide and conquer_ is a technique used **in algorithmia** in which we split a
+problem into smaller sub-problems recursively until they're simple enough to be
+solved directly.
 
-Matching exceptions
-===================
+::::
+:::
 
-We can also match more than one exception, or different ones:
+# 
 
-```python
-try:
-    do_something()
-except (ValueError, ZeroDivisionError):
-    pass
-except TypeError:
-    pass
-```
+\begin{exampleblock}{Checkpoint}
+How is the session going so far?
+- Do we have questions?
+- Is there anything that doesn't yet click?
+\end{exampleblock}
 
-Raising exceptions
-==================
+# Mergesort
 
-Exceptions are a mechanism that we can use ourselves too.
+The idea behind **mergesort** is fairly simple.  What if we had a way of
+splitting an unsorted list into smaller ones, and then merging them together in
+a sorted fashion?
 
-```python
-if len(phone_number) < 9:
-    raise ValueError("Phone number is too short")
-```
+. . .
 
+A question we need to agree on before jumping into the implementation...
 
-Raising exceptions
-==================
+- **Is a list of only one element sorted?**
 
-Exceptions are a mechanism that we can use ourselves too.
+. . .
 
-Break
-=====
+Yes, it is!
+
+# Mergesort
+
+![](./img/mergesort.png){height=300px}
+
+# Mergesort
+
+In our mergesort implementation we will have two different functions.
+**`merge`**, that will just take two **sorted** lists and merge them into a new
+sorted list, and **`mergesort`**, that will perform the splitting of the list
+and call **`merge`** on the smaller lists.
+
+. . .
+
+\begin{exampleblock}{Mergesort}
+Let's implement mergesort!
+\end{exampleblock}
+
+# Mergesort
+
+What's the worst case runtime for mergesort?  Why?
