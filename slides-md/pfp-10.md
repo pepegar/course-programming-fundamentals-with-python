@@ -1,39 +1,29 @@
 ---
 title: Programming fundamentals with Python
-author: Pepe García
+subtitle: Modules and packages
+author: Pepe García <jgarciah@faculty.ie.edu>
 email: jgarciah@faculty.ie.edu
-date: 2020-04-20
+date: 2020-11-10
 lang: en
 ---
 
-Programming fundamentals with Python
-====================================
+# Plan for today
 
+>- Learn what are modules and why they exist
+>- Learn about standard library modules
+>- Create our own modules
+>- Packages
 
-Plan for today
-==============
+# Modules
 
-Learn what are modules and why they exist
+With modules, Python provides functionality to package our functions,
+variables, and anything else into small packages ready to use anywhere
+else.
 
-Learn about standard library modules
+Every time we're creating a file in Python, we're creating a module.
+In order to import it we'll use its name without the `.py` extension.
 
-Learn about third party modules
-
-Create our own modules
-
-Modules
-=======
-
-Python modules allow us to reuse code written somewhere else
-
-Modules
-=======
-
-We, as programmers need to be lazy, and follow the DRY principles. 
-That\'s what modules help with.
-
-Modules
-=======
+# Modules
 
 To use modules, we need the import statement:
 
@@ -41,22 +31,60 @@ To use modules, we need the import statement:
 import module
 ```
 
-Modules
-=======
+# Modules
 
 When we import a module, all variables in the module are evaluated, all
 functions created, and top level statements executed.
 
-Modules
-=======
+. . .
 
-Modules
-=======
+\begin{exampleblock}{Example}
+
+Let's see how importing a module will make Python evaluate everything
+in it.  In the Python file at the root of the repo, import the
+utilities.py file, let's see what happens.
+
+\end{exampleblock}
+
+# Modules
+
+
+\begin{alertblock}{Warning}
+
+As you've probably noticed, when we import a module, everything inside
+it gets evaluated.
+
+This can be dangerous if the module has statements at the top level
+you're not expecting.
+
+\end{alertblock}
+
+# Modules
 
 But, where does Python search for modules?
 
-sys.path
-========
+. . .
+
+>- The directory containing the current module
+>- **`sys.path`**
+
+sys
+===
+
+sys contains functionality related with the current Python session
+
+```python
+import sys
+
+print(sys.path)
+
+# ['',
+#  '/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/lib/python37.zip',
+#  '/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/lib/python3.7',
+#  '/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/lib/python3.7/lib-dynload',
+#  '/Users/pepe/Library/Python/3.7/lib/python/site-packages',
+#  '/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/lib/python3.7/site-packages']
+```
 
 Standard library
 ================
@@ -71,24 +99,18 @@ Standard library
 
 We have already used some modules from the standard library before:
 
-sys
-===
-
-sys contains functionality related with the current python session
-
-```python
-import sys
-
-print(sys.path)
-
-# ['', '/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/lib/python37.zip', '/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/lib/python3.7', '/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/lib/python3.7/lib-dynload', '/Users/pepe/Library/Python/3.7/lib/python/site-packages', '/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/lib/python3.7/site-packages']
-```
-
 time
 ====
 
-time module from the standard library contains utilities related to
-**time**
+::: columns
+:::: column
+
+The **`time`** module from the standard library contains utilities
+related for dealing with time.  For example, we can use it for making
+our program stop for a certain amount of time.
+
+::::
+:::: column
 
 ```python
 import time
@@ -98,11 +120,15 @@ while True:
     print("hello!")
 ```
 
+::::
+:::
+
+
 math
 ====
 
-math module contains useful functions and constants for doing numeric
-and mathematic operations
+::: columns
+:::: column
 
 ```python
 import math
@@ -110,82 +136,136 @@ import math
 math.ceil(3.4)
 # 4
 
-
 math.floor(3.4)
 # 3
 ```
 
-third party libraries
-=====================
+::::
+:::: column
 
-There are a lot of third party libraries:
+The **`math`** module contains useful functions and constants for
+doing numeric and mathematic operations
 
-<https://pypi.org>
+::::
+:::
 
-example: matplotlib
-===================
+# Importing
 
-matplotlib is a great library for plotting and visualizing data
+We have already seen a way of importing modules, using the **`import
+module`** syntax, but there are more.
 
-This library does not usually come installed with python, but we have it
-because we installed anaconda! 🐍
+```python
+from module import variable # Cherry-picking what we want to import
+from module import * # importing everything from a module
+import module as alias # It's possible to give alias to imported modules
+```
 
-matplotlib
-==========
+# from ... import name
 
-Recap
-=====
+::: columns
+:::: column
 
-Import modules with import
+We can use this technique to import specific names from a module and
+use them directly.
 
-Create our own modules as files
+::::
+:::: column
 
-stdlib contains a lot of useful stuff
+``` python
+from json import dumps
+print(dumps([1,2,3]))
+# '[1, 2, 3]'
+```
 
-third party libs can help when something is not on stdlib
+::::
+:::
 
-Exercises
-=========
 
-Exercise 1
-==========
+# from ... import *
 
-create a more accurate version of **calculate\_volume\_cilinder** and
-**calculate\_volume\_sphere** that gets the **pi** constant from the
-**math** module
+::: columns
+:::: column
 
-Exercise 2
-==========
+``` python
+from json import *
+print(dumps([1,2,3]))
+# '[1, 2, 3]'
+```
 
-Investigate how to create histograms using the **matplotlib** library. 
-Create a function that uses the **matplotlib** library to plot the
-histogram of the grade distribution in an imaginary IE class with 100
-students.  Remember that there are 15% pass, 35% proficiency, 35%
-excellence, and 15% honors in a class.
+::::
+:::: column
 
-Exercise 3
-==========
+This technique, also called wildcard import will import all names from a module.
 
-Investigate about packages in Python, read this guide
-<https://docs.python.org/3/tutorial/modules.html#packages>.
+::::
+:::
 
- 
 
-Create the following packages:\
-- a **utils** package, containing a **functions** module.  The
-**functions** module should contain a function **area\_triangle** that
-calculates the area of a triangle.\
-- a **data** package, containing a **triangles** module that declares a
-variable **triangle\_definitions** with a list of 10 triangle
-definitions.  Each triangle definition should be a dictionary like:
+# import ... as ...
 
-**{\"base\": 10, \"height\":2}**
+::: columns
+:::: {.column width=35%}
 
-\- a **main.py** file that will use **utils.functions.area\_triangle**
-and **data.triangles.triangle\_definitions** to print the areas of all
-triangles.
+We can also rename modules when importing.  This is specially useful
+whenever we will have a clash of names between imported stuff and our
+current module.
 
- 
+::::
+:::: {.column width=60%}
 
-If you want to handle this exercise to me, please create a repository in
-github named **black-belt-modules** and push your solution there.
+```python
+import json as momoa
+momoa.dumps({"roles":["Aquaman","Khal Drogo"]})
+'{"roles": ["Aquaman", "Khal Drogo"]}'
+```
+
+::::
+:::
+
+# Packages
+
+When Python projects get bigger it's common to start dividing them
+into files, and when there are too many into one single directory,
+into **packages**.
+
+**Packages** are a way of organizing **modules** in Python projects.
+
+# Packages
+
+![](./img/PackageModuleStructure.jpg){height=250px}
+
+# Packages
+
+**Packages** are implemented using simple directories.  These
+directories should contain a **`__init__.py`** (notice the two leading
+and trailing underscores) file in order for Python to find them.
+
+# Packages
+
+In order to import modules from packages we will use a dot (.) as a
+directory separator.
+
+```python
+import pandas.io.pickle # we're importing the pickle *module*
+                        # from the pandas.io *package*
+
+pickle("whatever")
+```
+
+# Packages
+
+\begin{exampleblock}{Importing packages}
+
+Let's do a quick exercise here in class.  In the python file in the
+root of the repository, import the dictionary from
+core/utils/data.py and print the second
+element.
+
+\end{exampleblock}
+
+# Recap
+
+>- Import modules with import
+>- Create our own modules as files
+>- stdlib contains a lot of useful stuff
+>- third party libs can help when something is not on stdlib
