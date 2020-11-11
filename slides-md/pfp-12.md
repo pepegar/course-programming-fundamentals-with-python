@@ -1,117 +1,149 @@
 ---
 title: Programming fundamentals with Python
-author: Pepe García
+subtitle: Sorting algorithms - mergesort
+author: Pepe García <jgarciah@faculty.ie.edu>
 email: jgarciah@faculty.ie.edu
-date: 2020-04-20
+date: 2020-11-06
 lang: en
 ---
 
-Programming fundamentals with Python
-====================================
+# Plan for today
 
+>- recursion
+>- divide and conquer algorithms
+>- mergesort
 
-Error handling
-==============
+# Recursion
 
-Things can go wrong when programming.  Today we\'ll learn how to deal
-with errors, and how to produce them ourselves.
+::: columns
+:::: column
+![](./img/recursive-book.jpeg)
+::::
+::::column
+Recursion is a technique to solve problems in terms of smaller versions of the
+same problem.
 
-Error handling
-==============
+. . .
 
-Can you name cases in which your program went wrong?
+In computer science we use it when a function calls itself:
 
-Division by zero
-
-File not found
-
-Type error
-
-What are exceptions
-===================
-
-**Exceptions**, or **errors**, are exceptional events that may happen in
-our program.  They may happen because of different reasons
-
-What are exceptions
-===================
-
-    def divide(a, b):
-        return a / b
-
-Can you spot the potential **exception** in the following function?
-
-What are exceptions
-===================
-
-By default, if we don\'t do anything, an exception terminates the
-program.
-
-Recovering from exceptions
-==========================
-
-Python provides a way of handling exceptions, using the **try-except**
-block.
+. . .
 
 ```python
-try:
-    do_something()
-except:
-    recover()
+def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n - 1)
 ```
 
-Recovering
-==========
+::::
+:::
 
-Let\'s recover from a simple exception by printing a message
+# Recursion
 
-Matching exceptions
-===================
+::: columns
+:::: column
+![](./img/droste.jpg)
+::::
+::::column
 
-We can match particular exceptions in the except clause, this way, only
-the kind of exception we matched will be handled
+An example of a recursive algorithm is the calculation of a number in the
+Fibonacci sequence.
 
-```python
-try:
-    do_something()
-except ValueError:
-    recover()
-```
+Remember that Fibonacci goes like this:
 
-Recovering
-==========
+**0, 1, 1, 2, 3, 5, 8, 13...**
 
-Let\'s modify the previous example
+. . .
 
-Matching exceptions
-===================
+\begin{exampleblock}{Fibonacci}
 
-We can also match more than one exception, or different ones:
+Let's implement the calculation of a number in the Fibonacci sequence using recursion!
 
-```python
-try:
-    do_something()
-except (ValueError, ZeroDivisionError):
-    pass
-except TypeError:
-    pass
-```
+\end{exampleblock}
 
-Raising exceptions
-==================
+::::
+:::
 
-Exceptions are a mechanism that we can use ourselves too.
+# Recursion
 
-```python
-if len(phone_number) < 9:
-    raise ValueError("Phone number is too short")
-```
+Something that we have to consider is that all problems that we solve using
+recursion can be solved using iteration.
 
+. . .
 
-Raising exceptions
-==================
+\begin{block}{Homework}
 
-Exceptions are a mechanism that we can use ourselves too.
+Try implementing the previous function using iteration instead of recursion!
 
-Break
-=====
+\end{block}
+
+# Divide and conquer
+
+::: columns
+:::: {.column width=20%}
+![](./img/Philip-ii-of-macedon.jpg)
+::::
+:::: {.column width=80%}
+
+From Wikipedia:
+
+> Divide and rule (Latin: divide et impera), or divide and conquer, in politics
+> and sociology is gaining and maintaining power by breaking up larger
+> concentrations of power into pieces that individually have less power than the
+> one implementing the strategy.
+
+. . .
+
+_Divide and conquer_ is a technique used **in algorithmia** in which we split a
+problem into smaller sub-problems recursively until they're simple enough to be
+solved directly.
+
+::::
+:::
+
+# 
+
+\begin{exampleblock}{Checkpoint}
+How is the session going so far?
+- Do we have questions?
+- Is there anything that doesn't yet click?
+\end{exampleblock}
+
+# Mergesort
+
+The idea behind **mergesort** is fairly simple.  What if we had a way of
+splitting an unsorted list into smaller ones, and then merging them together in
+a sorted fashion?
+
+. . .
+
+A question we need to agree on before jumping into the implementation...
+
+- **Is a list of only one element sorted?**
+
+. . .
+
+Yes, it is!
+
+# Mergesort
+
+![](./img/mergesort.png){height=300px}
+
+# Mergesort
+
+In our mergesort implementation we will have two different functions.
+**`merge`**, that will just take two **sorted** lists and merge them into a new
+sorted list, and **`mergesort`**, that will perform the splitting of the list
+and call **`merge`** on the smaller lists.
+
+. . .
+
+\begin{exampleblock}{Mergesort}
+Let's implement mergesort!
+\end{exampleblock}
+
+# Mergesort
+
+What's the worst case runtime for mergesort?  Why?

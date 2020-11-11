@@ -1,271 +1,114 @@
 ---
 title: Programming fundamentals with Python
-subtitle: Modules and packages
+subtitle: Session 10 - Search algorithms
 author: Pepe García <jgarciah@faculty.ie.edu>
 email: jgarciah@faculty.ie.edu
-date: 2020-11-10
+date: 2020-04-20
 lang: en
 ---
 
-# Plan for today
+# Asymptotic notation refresher
 
->- Learn what are modules and why they exist
->- Learn about standard library modules
->- Create our own modules
->- Packages
+>- Big Theta (Θ) - Only one case in term of runtime (worst case == best case)
+>- Big Omega (Ω) - For describing **best case** runtime
+>- Big O (O) - For describing **worst case** runtime. **This is the one we'll use most of the time**.
 
-# Modules
+# Different runtimes
 
-With modules, Python provides functionality to package our functions,
-variables, and anything else into small packages ready to use anywhere
-else.
+![](./img/runtimes.png)
 
-Every time we're creating a file in Python, we're creating a module.
-In order to import it we'll use its name without the `.py` extension.
+# Search algorithms
 
-# Modules
+Search algorithms are used to check the existence of an element in a sequence.
+There are different things that may affect how to search in that sequence.
 
-To use modules, we need the import statement:
+# Search algorithms
 
-```python
-import module
-```
+Our search algorithms will be implemented as functions in Python that receive
+**two parameters, the element we're searching for, and the list**, and will **return
+a boolean** representing if the element exists in the sequence.
 
-# Modules
+# Types of search algorithms
 
-When we import a module, all variables in the module are evaluated, all
-functions created, and top level statements executed.
+We will learn about the two main search algorithms used.  **Linear search** and
+**Binary search**.
 
-. . .
+# Linear search
 
-\begin{exampleblock}{Example}
+We will use linear search whenever we're not sure if the list is sorted or not.
+For implementing linear search we will:
 
-Let's see how importing a module will make Python evaluate everything
-in it.  In the Python file at the root of the repo, import the
-utilities.py file, let's see what happens.
-
-\end{exampleblock}
-
-# Modules
-
-
-\begin{alertblock}{Warning}
-
-As you've probably noticed, when we import a module, everything inside
-it gets evaluated.
-
-This can be dangerous if the module has statements at the top level
-you're not expecting.
-
-\end{alertblock}
-
-# Modules
-
-But, where does Python search for modules?
+>- Iterate over all elements in the list
+>- if we find the element, **return True**.
+>- if we don't find the element, **return False**.
 
 . . .
 
->- The directory containing the current module
->- **`sys.path`**
-
-sys
-===
-
-sys contains functionality related with the current Python session
-
-```python
-import sys
-
-print(sys.path)
-
-# ['',
-#  '/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/lib/python37.zip',
-#  '/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/lib/python3.7',
-#  '/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/lib/python3.7/lib-dynload',
-#  '/Users/pepe/Library/Python/3.7/lib/python/site-packages',
-#  '/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/lib/python3.7/site-packages']
-```
-
-Standard library
-================
-
-The stdlib is a set of modules for a lot of different purposes
-
-Python follows a batteries included approach, trying to give us as
-programmers everything we need
-
-Standard library
-================
-
-We have already used some modules from the standard library before:
-
-time
-====
-
-::: columns
-:::: column
-
-The **`time`** module from the standard library contains utilities
-related for dealing with time.  For example, we can use it for making
-our program stop for a certain amount of time.
-
-::::
-:::: column
-
-```python
-import time
-
-while True:
-    time.sleep(1)
-    print("hello!")
-```
-
-::::
-:::
-
-
-math
-====
-
-::: columns
-:::: column
-
-```python
-import math
-
-math.ceil(3.4)
-# 4
-
-math.floor(3.4)
-# 3
-```
-
-::::
-:::: column
-
-The **`math`** module contains useful functions and constants for
-doing numeric and mathematic operations
-
-::::
-:::
-
-# Importing
-
-We have already seen a way of importing modules, using the **`import
-module`** syntax, but there are more.
-
-```python
-from module import variable # Cherry-picking what we want to import
-from module import * # importing everything from a module
-import module as alias # It's possible to give alias to imported modules
-```
-
-# from ... import name
-
-::: columns
-:::: column
-
-We can use this technique to import specific names from a module and
-use them directly.
-
-::::
-:::: column
-
-``` python
-from json import dumps
-print(dumps([1,2,3]))
-# '[1, 2, 3]'
-```
-
-::::
-:::
-
-
-# from ... import *
-
-::: columns
-:::: column
-
-``` python
-from json import *
-print(dumps([1,2,3]))
-# '[1, 2, 3]'
-```
-
-::::
-:::: column
-
-This technique, also called wildcard import will import all names from a module.
-
-::::
-:::
-
-
-# import ... as ...
-
-::: columns
-:::: {.column width=35%}
-
-We can also rename modules when importing.  This is specially useful
-whenever we will have a clash of names between imported stuff and our
-current module.
-
-::::
-:::: {.column width=60%}
-
-```python
-import json as momoa
-momoa.dumps({"roles":["Aquaman","Khal Drogo"]})
-'{"roles": ["Aquaman", "Khal Drogo"]}'
-```
-
-::::
-:::
-
-# Packages
-
-When Python projects get bigger it's common to start dividing them
-into files, and when there are too many into one single directory,
-into **packages**.
-
-**Packages** are a way of organizing **modules** in Python projects.
-
-# Packages
-
-![](./img/PackageModuleStructure.jpg){height=250px}
-
-# Packages
-
-**Packages** are implemented using simple directories.  These
-directories should contain a **`__init__.py`** (notice the two leading
-and trailing underscores) file in order for Python to find them.
-
-# Packages
-
-In order to import modules from packages we will use a dot (.) as a
-directory separator.
-
-```python
-import pandas.io.pickle # we're importing the pickle *module*
-                        # from the pandas.io *package*
-
-pickle("whatever")
-```
-
-# Packages
-
-\begin{exampleblock}{Importing packages}
-
-Let's do a quick exercise here in class.  In the python file in the
-root of the repository, import the dictionary from
-core/utils/data.py and print the second
-element.
-
+\begin{exampleblock}{Linear search}
+Let's implement linear search ourselves!
 \end{exampleblock}
 
-# Recap
+# Linear search - Discussion
 
->- Import modules with import
->- Create our own modules as files
->- stdlib contains a lot of useful stuff
->- third party libs can help when something is not on stdlib
+>- What's the worst case runtime of linear search? (**Big O**)
+>- And the best case? (**Big Omega**)
+>- Can you say something good or bad about linear search?
+
+. . .
+
+The good thing about linear search is that it will work for any sequence,
+regardless if it's sorted.
+
+Something bad, it may be inefficient in some cases.
+
+# Binary search
+
+Binary search is the algorithm we'll apply to search for an element in a
+**sorted** sequence.  A sequence being sorted implies that elements inside it
+are greater than or equal to previous elements and lesser than or equal to
+following elements.
+
+**`[]`** is sorted
+
+**`[1]`** is sorted
+
+**`[1,1,1,1]`** is sorted
+
+**`[1,2,3,3,3,3,4,7,9,12,31]`** is sorted
+
+**`[2,1,3,3,3,3,4,7,9,12,31]`** is **not** sorted
+
+# Binary search
+
+Imagine we need to go through a dictionary (the actual book, not a Python
+dictionary) to search for a word.  What's the algorithm you automatically apply
+to the search?
+
+. . .
+
+>- Open the dictionary in a page in the middle.
+>- If the word is _lesser than_ the current words, jump to the middle of the left half.
+>- If it's _greater than_ the current word, jump to the middle of the right half.
+
+# Binary search
+
+![](./img/binary_search.png)
+
+# Binary search
+
+\begin{exampleblock}{Binary search}
+Let's implement binary search ourselves!
+\end{exampleblock}
+
+# Binary search - discussion
+
+
+>- What's the worst case runtime of it? (**Big O**)
+>- And the best case? (**Big Omega**)
+>- Can you say something good or bad about it?
+
+. . .
+
+The good thing about binary search is that it's more performant than linear search.
+
+Something bad, it doesn't work for all sequences, they must be sorted.
