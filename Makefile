@@ -19,7 +19,7 @@ $(output)/%.pdf: $(source)/%.md
 .PHONY : clean
 
 watch:
-	ls docs/*.md | entr make all
+	ls $(source)/* | entr make all
 
 clean:
 	rm -f $(output)/*.pdf
