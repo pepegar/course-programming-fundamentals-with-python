@@ -7,20 +7,19 @@ date: 2020-04-20
 lang: en
 ---
 
-# Plan for today 
+# Plan for today
 
 >- Internet basics
 >- HTTP
 >- Requests library
 >- Exercises
 
-# The Internet 
+# The Internet
 
 The internet is a **VERY BIG** computer network.  It forms a **graph** of
 computers ones connected to others.
 
-# Internet 
-
+# Internet
 
 \begin{exampleblock}{}
 Discuss the Internet in the whiteboard.
@@ -34,7 +33,7 @@ Based on **requests** and **responses**.
 
 **Clients** do requests and **servers** answer with responses
 
-# HTTP requests 
+# HTTP requests
 
 ```http
 GET / HTTP/1.1
@@ -43,7 +42,7 @@ Accept: text/html
 Host: www.example.com
 ```
 
-# HTTP Responses 
+# HTTP Responses
 
 Status
 
@@ -62,7 +61,7 @@ Connection: close
 {"user": "pepegar", "age": 55}
 ```
 
-# HTTP Requests 
+# HTTP Requests
 
 HTTP requests and responses are messages interchanged between client and
 server
@@ -70,7 +69,7 @@ server
 HTTP requests may contain a lot of metadata but for us, today, the only
 field that matters is the URL:
 
-# HTTP Clients 
+# HTTP Clients
 
 HTTP clients send requests to HTTP servers.  The most iconic case for
 HTTP clients is web browsers.
@@ -78,42 +77,43 @@ HTTP clients is web browsers.
 Web browsers are HTTP clients that allow us to navigate the web with our
 computer.
 
-# HTTP Clients 
+# HTTP Clients
 
 Deconstruct what happens when we browse the web (Developer mode)
 
-start at
-
-[[https://en.wikipedia.org/wiki/Echidna]{style="color:#ADD8E6"}](https://en.wikipedia.org/wiki/Echidna)
-
+start at <https://en.wikipedia.org/wiki/Echidna>
  
-# Web APIs 
+
+Web APIs
+========
 
 Web APIs, or just APIs are the most common way for exposing information
 from a web server.
 
 
-# Web APIs 
+# Web APIs
 
 Most web APIs communicate using a data interchange format such as
 **JSON** or **XML**.
 
-# JSON 
+# JSON
 
 <http://json.org>
 
 JSON is a data interchange format used to share data between HTTP
 clients and servers.  Some valid JSON values are:
 
-    [1,2,3] # lists
+```json
+[1,2,3] # lists
 
-    1 # numbers
+1 # numbers
 
-    "potatoes" # Strings
+"potatoes" # Strings
 
-    {"name":"Pepe","surname":"Garcia"} # dictionaries
+{"name":"Pepe","surname":"Garcia"} # dictionaries
+```
 
-# Using JSON 
+# Using JSON
 
 ```python
 json_encoded_string = """
@@ -123,7 +123,7 @@ json_encoded_string = """
 
 Let's **parse** this JSON string from Python using the **json ** module
 
-# requests library 
+# requests library
 
 Requests is the most famous HTTP library for Python.  It has an HTTP
 client as well as other useful utilities such as JSON handler, etc.
@@ -132,7 +132,7 @@ client as well as other useful utilities such as JSON handler, etc.
 
 It should be already installed in your computers thanks to Anaconda.
 
-# requests library 
+# requests library
 
 We can use requests to get an HTTP response as follows:
 
@@ -144,11 +144,11 @@ response = requests.get("url")
 data = response.text
 ```
 
-# Practice 
+# Practice
 
 Let's try using **requests** to get the homepage of http://google.com
 
-# requests + json 
+# requests + json
 
 Requests has builtin function for handling JSON responses
 
@@ -158,10 +158,9 @@ response = requests.get('http://api.open-notify.org/astros.json')
 response.json()
 ```
 
-# requests library 
+# requests library
 
-Use
-[[**http://api.open-notify.org/astros.json**]{style="color:#ADD8E6"}](http://api.open-notify.org/astros.json)
+Use [**http://api.open-notify.org/astros.json**](http://api.open-notify.org/astros.json)
 
 Call the API and print a message like:
 
@@ -172,29 +171,39 @@ There's currently 78 people in space:
 -...
 ```
 
-# requests library 
+# requests library
 
-Use the Star Wars API to list all planet names from star wars.
+Use the Github API to retrieve all the public repositories in our
+organization!
 
- 
+https://api.github.com/orgs/pfp-2020/repos
 
-**https://swapi.co/**
+. . .
 
-# Fuel for crazy ideas 
+Then, for each one of them, print all commit messages.
+
+. . .
+
+https://api.github.com/repos/pfp-2020/session-6/commits
+
+`data["commit"]["message"]`
+
+# Fuel for crazy ideas
 
 <https://github.com/toddmotto/public-apis>
 
-# Exercises 
+# Exercises
 
-# Exercise 1 
+# Exercise 1
 
 Create a function that uses the **requests** library to get the lyrics
 of a song.
 
 You can use the **lyrics.ovh** api as described here:
+
 https://lyricsovh.docs.apiary.io/#reference/0/lyrics-of-a-song/search?console=1
 
-# Exercise 1 
+# Exercise 1
 
 Create a function that returns the current latitude and longitude of the
 ISS
