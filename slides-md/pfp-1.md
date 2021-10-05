@@ -29,6 +29,8 @@ The objectives for this course are that:
 - Students learn how to use industry grade tools for programming (git, pip,
   etc.)
 - Students understand how algorithms are designed and implemented.
+- Students will learn how to work with different data structures and apply them
+  to different cases.
 
 # Course introduction. Grading
 
