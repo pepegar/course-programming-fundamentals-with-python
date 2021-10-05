@@ -1,6 +1,6 @@
 ---
 title: Programming fundamentals with Python
-subtitle: Session 3 - Git and Github
+subtitle: Session 2 - Git and Github
 author: Pepe García <jgarciah@faculty.ie.edu>
 email: jgarciah@faculty.ie.edu
 date: 2021-10-06
