@@ -1,10 +1,9 @@
 ---
 title: Programming fundamentals with Python
-subtitle: Session 3
+subtitle: Session 3 - Git and Github
 author: Pepe García <jgarciah@faculty.ie.edu>
 email: jgarciah@faculty.ie.edu
-date: 2020-04-20
-lang: en
+date: 2021-10-06
 ---
 
 # Github
@@ -84,8 +83,7 @@ bring all changes **from the remote repository to our local repository.**
 $ git pull origin master
 ```
 
-Solving conflicts
-=================
+# Solving conflicts
 
 *Conflicts* occur naturally when coding.  Mostly when we do collaborate
 with others.
@@ -94,8 +92,7 @@ with others.
 
 Let's introduce a conflict and fix it ourselves!
 
-Solving conflicts
-=================
+# Solving conflicts
 
 First, in our local copy of **my-first-repo**, let's change the
 function we had to:
@@ -107,8 +104,7 @@ def func(a, b):
 
 A simple change, just modify it so it substracts instead of adding.
 
-Solving conflicts
-=================
+# Solving conflicts
 
 And then **git add** and **git commit** it.
 
@@ -121,13 +117,11 @@ $ git commit -m "change function and make it substract"
  1 file changed, 1 insertion(+), 1 deletion(-)
 ```
 
-Solving conflicts
-=================
+# Solving conflicts
 
 Now let's simulate the changes someone else would make in github.
 
-Solving conflicts
-=================
+# Solving conflicts
 
 Then, in our local repository, let's **git pull**
 
@@ -146,8 +140,7 @@ CONFLICT (content): Merge conflict in file.py
 Automatic merge failed; fix conflicts and then commit the result.
 ```
 
-Solving conflicts
-=================
+# Solving conflicts
 
 First of all, we need to see the conflicts
 
@@ -168,8 +161,7 @@ index 64ad20f,84e4d51..0000000
 ++>>>>>>> e441a78ff5f91b986f0da3afddbb7a7a01ee1859
 ```
 
-Solving conflicts
-=================
+# Solving conflicts
 
 As you've seen in the last **git diff**, there are incompatible
 changes in our function.  We need to make a decission, let's say that
@@ -185,8 +177,7 @@ $ git commit -m "merged conflict in file.py"
 [master 1abfd41] merged conflict in file.py
 ```
 
-Solving conflicts
-=================
+# Solving conflicts
 
 ``` {.diff}
 $ git log
@@ -230,10 +221,22 @@ Date:   Mon Nov 11 23:55:49 2019 +0100
 handle, submit, and review assignments.  You will receive links like
 this one, and you'll need to accept the assignments:
 
-[https://classroom.github.com/a/csu9qbqV](https://classroom.github.com/a/csu9qbqV)
+## Section 2
 
-Cloning a project
-=================
+<https://classroom.github.com/a/w5ZSPW16>
+
+
+## Section 3
+
+<https://classroom.github.com/a/Meo0vyLF>
+
+# Github classroom
+
+When we accept an assignment in Github classroom, a new repository gets created
+automatically in our Github profile.  It gets
+
+
+# Cloning a project
 
 ``` {.diff}
 $ git clone https://github.com/pepegar/my-first-repository.git
