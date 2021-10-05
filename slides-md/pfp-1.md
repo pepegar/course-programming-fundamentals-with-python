@@ -342,19 +342,11 @@ Date:   Mon Nov 11 23:55:49 2019 +0100
 add file.py to git
 ```
 
-# Github classroom
+# Github
 
-At this point, everybody should have an account on Github.  If you
-haven't yet created one, please go and create one (you can follow the
-instructions in the second link of the bibliography).
+Now, let's create an account in Github!
 
-# Github classroom
-
-**Github classroom** is the software we will use in this term to
-handle, submit, and review assignments.  You will receive links like
-this one, and you'll need to accept the assignments:
-
-[https://classroom.github.com/a/csu9qbqV](https://classroom.github.com/a/csu9qbqV)
+Go to github.com and create an account. (if you've one already, that's OK)
 
 
 # Bibliography
