@@ -7,15 +7,50 @@ date: 2020-04-20
 lang: en
 ---
 
-# Asymptotic notation refresher
+# Plan for today
 
->- Big Theta (Θ) - Only one case in term of runtime (worst case == best case)
+>- How do we study the runtime of algorithms?
+>- Introduction to some algorithms
+
+# Our first algorithm
+
+##
+
+Create a function that finds the maximum element in a list (don't use the
+builtin `max` function)
+
+# Our first algorithm
+
+- How long did it take to run?
+- How can we really measure the runtime of algorithms?
+
+# Asymptotic notation
+
+What we'll use instead of measuring actual time, is a notation that described
+how many operations does the algorithm need to perform depending on the size of
+the input.
+
+# Asymptotic notation
+
 >- Big Omega (Ω) - For describing **best case** runtime
 >- Big O (O) - For describing **worst case** runtime. **This is the one we'll use most of the time**.
+>- Big Theta (Θ) - Only one case in term of runtime (worst case == best case)
+
+# Asymptotic notation
+
+What's the **Big O** complexity for our `maximum` function?  What about the **Big Omega**?
+
+. . .
+
+## 
+
+What if the list was sorted
 
 # Different runtimes
 
 ![](./img/runtimes.png)
+
+
 
 # Search algorithms
 
@@ -101,7 +136,6 @@ Let's implement binary search ourselves!
 \end{exampleblock}
 
 # Binary search - discussion
-
 
 >- What's the worst case runtime of it? (**Big O**)
 >- And the best case? (**Big Omega**)
