@@ -1,9 +1,8 @@
 ---
 title: Programming fundamentals with Python
-subtitle: Session 6
+subtitle: Using files with Python
 author: Pepe García <jgarciah@faculty.ie.edu>
 email: jgarciah@faculty.ie.edu
-date: 2020-10-16
 lang: en
 ---
 
@@ -18,7 +17,7 @@ Plan for today
 ## Session 6 repository
 
 All materials for today's session will be in
-[**`https://github.com/pfp-2020/session-6`**](https://github.com/pfp-2020/session-6).  Clone it if you want to
+[**`https://github.com/pfp-2021/session-6`**](https://github.com/pfp-2021/session-6).  Clone it if you want to
 have it in your computer.
 
 # Plan for today
@@ -338,7 +337,7 @@ then the file object as parameters.
 
 # Homework
 
-You will find the data files for these exercises in this repository:  https://github.com/pfp-2020/session-6
+You will find the data files for these exercises in this repository:  https://github.com/pfp-2021/session-6
 
 - Let's get personal data from the person represented in
   **`luke.json`**.  Print the **`name`**, **`height`**,
