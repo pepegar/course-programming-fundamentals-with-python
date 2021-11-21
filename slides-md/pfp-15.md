@@ -3,8 +3,8 @@ title: Programming fundamentals with Python
 subtitle: Modules and packages
 author: Pepe García <jgarciah@faculty.ie.edu>
 email: jgarciah@faculty.ie.edu
-lang: en
 ---
+
 
 # Plan for today
 
@@ -105,9 +105,9 @@ There are a lot of commands available from pip
 
 . . .
 
->- install packages **`pip install whatever`**
->- uninstall packages **`pip uninstall whatever`**
->- show all installed packages **`pip freeze`**
+>- install packages **`env/bin/pip install whatever`**
+>- uninstall packages **`env/bin/pip uninstall whatever`**
+>- show all installed packages **`env/bin/pip freeze`**
 
 . . .
 
@@ -213,6 +213,35 @@ client = hn.NewsClient()
 for story in client.get_best_story(10): # get 10 high score stories
     print(story.title)
 ```
+
+# Getting all dependencies for a project
+
+When we're working on a project, we want to make it easy for people to get up to
+speed.  We can do that for dependencies, so that new developers in the project
+don't need to install dependencies one by one.
+
+Remember **`pip freeze`**?  We'll use it to generate a file called
+**`requirements.txt`** that contains all library dependencies.
+
+```
+$ env/bin/pip freeze > requirements.txt
+```
+
+
+# Getting all dependencies for a project
+
+Finally, when we clone a repository that contains some Python dependencies, we
+can install them all in one go, with:
+
+```
+$ env/bin/pip install -r requirements.txt
+```
+
+\begin{exampleblock}{Demo}
+
+Let's demo it with session-15 repository
+
+\end{exampleblock}
 
 # Recap
 
