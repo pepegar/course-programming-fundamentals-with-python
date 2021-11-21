@@ -3,112 +3,32 @@ title: Programming fundamentals with Python
 subtitle: Modules and packages
 author: Pepe García <jgarciah@faculty.ie.edu>
 email: jgarciah@faculty.ie.edu
-date: 2020-11-10
 lang: en
 ---
 
 # Plan for today
 
->- pip
+>- Errata & answer questions about previous sessions
 >- PYPI
+>- virtual environments
+>- pip
 >- Downloading & using Python libraries
 
-# pip
+# Errata
 
-`pip` is a package manager for Python.  We will use it through the command line,
-with one of these two flavours:
+The last day I wasn't able to run cells that contained imports of local python
+packages.  This demonstrated to be a bug in VSCode's python plugin.
 
->- `pip3`
->- `python3 -m pip`
-  
-# pip
+# Q&A
 
-`pip` is a package manager for Python.  We will use it through the command line,
-with one of these two flavours:
-
-- `pip3`
-- **`python3 -m pip`** I'll be using this one through today's session.
-
-. . .
+- How recursion works?
+- How mergesort recursion works?
 
 
-\begin{exampleblock}{Hint}
-
-Whenever we use \textbf{\texttt{python3 -m whatever}} we're telling python to execute the
-\textbf{\texttt{whatever}} module, pip in our case. 
-
-\end{exampleblock}
-
-
-# pip
-
-There are a lot of commands available from pip
-
-. . .
-
->- search packages **`pip search whatever`**
->- install packages **`pip install whatever`**
->- uninstall packages **`pip uninstall whatever`**
-
-. . .
-
-And... what can this **`whatever`** be?  Anything we want to search a library
-for.
-
-# pip
-
-Imagine we want to use mergesort but we don't want to implement it, we would do
-something like:
-
-```
-$ python3 -m pip search mergesort
-mergesort (0.0.1)   - merge sort module.
-sort-merge (0.0.1)  - Sorting a list of numbers with mergesort
-```
-
-. . .
-
-\begin{exampleblock}{Remember}
-
-blocks of code like this, starting with a dollar sign, mean that command was run
-in the console
-
-\end{exampleblock}
-
-# pip
-
-```
-$ python3 -m pip install mergesort
-Collecting mergesort
-  Downloading mergesort-0.0.1.tar.gz (779 bytes)
-Building wheels for collected packages: mergesort
-  Running setup.py clean for mergesort
-Failed to build mergesort
-Installing collected packages: mergesort
-    Running setup.py install for mergesort ... done
-Successfully installed mergesort-0.0.1
-```
-
-# Troubleshooting
-
-\begin{alertblock}{Where is python installed in your computer?}
-    \begin{itemize}
-        \item Mac: \texttt{/Users/youruser/opt/anaconda3/bin/python}
-        \item Windows: \texttt{C:\textbackslash Users\textbackslash youruser\textbackslash Anaconda3\textbackslash python.exe}
-    \end{itemize}
-\end{alertblock}
-
-# Troubleshooting (cont..)
-
-It's possible that on your windows computer `python` is not behaving as you
-expect.  This tutorial is handy for these cases.
-
-https://www.datacamp.com/community/tutorials/installing-anaconda-windows
-
-# Installing libraries with pip
+# Python Package Index
 
 In order to install libraries using pip we will first need to know which library
-to install.  To make this search easier, the Python community maintains Pypi,
+to install.  To make this search easier, the Python community maintains **Pypi**,
 the Python Package Index, a website with all the available libraries and
 instructions to install them.
 
@@ -133,25 +53,117 @@ Let's search for some libraries in the Python Package Index...
 
 \end{exampleblock}
 
-# Using libraries
+# Virtual environments
+
+**Virtual environments** are a way to create a project with its own dependencies.
+
+# Virtual environments
+
+\begin{alertblock}{Hint}
+In order to follow today's class from windows, run commands in \textbf{Anaconda Prompt}.
+\end{alertblock}
+
+# Creating virtual environments
+
+In order to create a virtual environment, we'll use the `python -m venv` tool:
+
+```
+$ mkdir testing-virtualenvs
+$ cd testing-virtualenvs
+$ python -m venv env
+```
+
+This last command creates a subdirectory in the current directory that will
+contain all the meta information about the virtualenv.  It's common to check
+that into `git`.
+
+# Activating a virtual environment
+
+We can _activate_ a virtual environment by running:
+
+```
+$ source env/bin/activate
+```
+
+# pip
+
+`pip` is a package manager for Python.  We will use it through the command line:
+
+```
+$ <venv>/bin/pip
+```
+
+Or, in our case:
+
+```
+$ env/bin/pip
+```
+
+# pip
+
+There are a lot of commands available from pip
+
+. . .
+
+>- install packages **`pip install whatever`**
+>- uninstall packages **`pip uninstall whatever`**
+>- show all installed packages **`pip freeze`**
+
+. . .
+
+And... what can this **`whatever`** be?  Anything we want to search a library
+for.
+
+# pip
+
+```
+$ python3 -m pip install mergesort
+Collecting mergesort
+  Downloading mergesort-0.0.1.tar.gz (779 bytes)
+Building wheels for collected packages: mergesort
+  Running setup.py clean for mergesort
+Failed to build mergesort
+Installing collected packages: mergesort
+    Running setup.py install for mergesort ... done
+Successfully installed mergesort-0.0.1
+```
+
+# Troubleshooting
+
+It's possible that on your windows computer `python` is not behaving as you
+expect.  This tutorial is handy for these cases.
+
+https://www.datacamp.com/community/tutorials/installing-anaconda-windows
+
+# Using third party libraries
 
 Once we've found the library we want to use in our project, it's time to see how
-it's used.  Normally libraries will have some documentation explaining how to
+it's used.  Usually libraries will have some documentation explaining how to
 use them.
 
 The place where this doc should be is in the homepage of the library.
 
-# Using libraries
+# Using third party libraries
 
 ![](./img/hackernews.jpg)
 
-# Using libraries
+# Using third party libraries
 
 `hackernews-client` is a library for getting HackerNews
 ([`http://news.ycombinator.com`](http://news.ycombinator.com)) data
 programatically.
 
-# Using libraries - HN
+
+
+\begin{exampleblock}{Exercise}
+
+Let's have 10 minutes to create a virtual environment that uses
+hackernews-client and a Python program that gets the 10 best stories from it
+(look in the docs how to get it).
+
+\end{exampleblock}
+
+# Using third party libraries - HN
 
 ```
 $ python3 -m pip install hackernews-client
@@ -167,7 +179,7 @@ Installing collected packages: hackernews-client
 Successfully installed hackernews-client-0.1.2b1
 ```
 
-# Using libraries - HN
+# Using third party libraries - HN
 
 ```python
 from hackernews import hn # import the hn module from hackernews package
@@ -179,7 +191,7 @@ from hackernews import hn # import the hn module from hackernews package
 
 ```
 
-# Using libraries - HN
+# Using third party libraries - HN
 
 ```python
 from hackernews import hn
@@ -191,7 +203,7 @@ client = hn.NewsClient() # create a client
 
 ```
 
-# Using libraries - HN
+# Using third party libraries - HN
 
 ```python
 from hackernews import hn
@@ -204,6 +216,8 @@ for story in client.get_best_story(10): # get 10 high score stories
 
 # Recap
 
+>- Answer questions about previous sessions
+>- PYPI
+>- virtual environments
 >- pip
->- Python package index
->- installing software for pip
+>- Downloading & using Python libraries

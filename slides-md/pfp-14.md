@@ -3,8 +3,6 @@ title: Programming fundamentals with Python
 subtitle: Modules and packages
 author: Pepe García <jgarciah@faculty.ie.edu>
 email: jgarciah@faculty.ie.edu
-date: 2020-11-10
-lang: en
 ---
 
 # Plan for today
